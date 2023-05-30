@@ -16,5 +16,10 @@
 <h2 th:if="${roast}">
     <p>You selected <span th:text="${roast}"></span> roast!</p>
 </h2>
+<form action="/coffee" method="post">
+    <label for="email">Your email:</label>
+    <input type="email" name="email" id="email">
+    <button type="submit">Sign up</button>
+</form>
 </body>
 </html>

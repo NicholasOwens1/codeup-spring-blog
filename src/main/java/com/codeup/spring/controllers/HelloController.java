@@ -1,6 +1,7 @@
 package com.codeup.spring.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,8 +16,9 @@ public class HelloController {
     @GetMapping("/hello/{name}")
     @ResponseBody
     // Path variable annotations need to have data types announced.
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + name + "!";
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
     }
 //    Create a path variable that takes a number instead of a string.
     @RequestMapping(path= "/increment/{number}", method = RequestMethod.GET)

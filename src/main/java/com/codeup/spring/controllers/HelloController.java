@@ -14,6 +14,7 @@ public class HelloController {
 //    Path variable used to add input to a URI request
     @GetMapping("/hello/{name}")
     @ResponseBody
+    // Path variable annotations need to have data types announced.
     public String sayHello(@PathVariable String name) {
         return "Hello " + name + "!";
     }

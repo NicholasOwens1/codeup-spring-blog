@@ -1,23 +1,30 @@
 package com.codeup.spring.models;
+
+
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Entity
-@Table(name = "posts")
+@Table(name="posts")
 public class Post {
-    @jakarta.persistence.Id
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length=100)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, length=500)
     private String body;
 
-    public Post() {
-    }
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "post")
+    private List<Comment> comments;
 
     public long getId() {
         return id;
@@ -43,7 +50,33 @@ public class Post {
         this.body = body;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Post() {
+    }
+
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
+    public Post(String title, String body, User user) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
     }
 }

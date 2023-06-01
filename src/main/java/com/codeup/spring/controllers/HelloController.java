@@ -1,6 +1,5 @@
 package com.codeup.spring.controllers;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,6 @@ public class HelloController {
     }
 //    Path variable used to add input to a URI request
     @GetMapping("/hello/{name}")
-    @ResponseBody
     // Path variable annotations need to have data types announced.
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("name", name);
